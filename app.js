@@ -1,7 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const path = require("path");
 
 const userRoutes = require('./routes/user');
+const sauceRoutes = require('./routes/sauce');
 
 mongoose.connect('mongodb+srv://David_Alleaume:cestmoidavid@cluster0.idrhn.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
     {
@@ -20,12 +22,11 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use((req, res) => {
-    res.json({ message: 'Votre requête a bien été reçue !' });
-});
-
 app.use(express.json());
 
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 app.use('/api/auth', userRoutes);
+app.use('/api/sauces', sauceRoutes);
 
 module.exports = app;
