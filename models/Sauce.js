@@ -1,3 +1,5 @@
+// création d'un Shéma "sauce" avec mongoose contenant les données requises pour chaque sauces
+
 const mongoose = require('mongoose')
 
 const sauceSchema = mongoose.Schema({
@@ -14,4 +16,5 @@ const sauceSchema = mongoose.Schema({
     usersDisliked: { type: [String], required: true },
 })
 
+// export de ce shéma en tant que model mongoose utilisable par notre application express
 module.exports = mongoose.model('Sauce', sauceSchema)
