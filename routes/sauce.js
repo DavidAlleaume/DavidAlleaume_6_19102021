@@ -4,12 +4,12 @@ const router = express.Router()
 
 // import du middleware d'authentification
 const auth = require('../middleware/auth')
-// import de multer
+// import du middlware multer
 const multer = require('../middleware/multer-config')
 // import de la logique métier
 const sauceCtrl = require('../controllers/sauce')
 
-// configuration des routes
+// configuration des routes avec ajout des middlwares d'authentification et multer lorsque c'est requis
 router.post('/', auth, multer, sauceCtrl.createSauce)
 router.put('/:id', auth, multer, sauceCtrl.modifySauce)
 router.delete('/:id', auth, sauceCtrl.deleteSauce)
